@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './style.scss';
 import axios from 'axios';
+import Orders from './Orders';
 
 function Painting(props) {
   const [quantity, setQuantity] = useState();
@@ -37,7 +38,7 @@ function Cart(props) {
   )
 }
 
-function App() {
+function BuyOrders() {
   const [email, setEmail] = useState();
   const [orders, setOrders] = useState([]);
 
@@ -51,6 +52,7 @@ function App() {
   }
 
   const handleAddItem = (itemName,quantity) => {
+    debugger;
     setOrders([...orders, {name: itemName, quantity: quantity}]);
   }
 
@@ -60,8 +62,10 @@ function App() {
     <div class="painting-cart">
       <div class="customer-info">
       <label for="email">Email</label>
+      {/* 3 Talk about state methods */}
       <input onChange={e => setEmail(e.target.value)} type="email" id="cust-email" />
       </div>
+      {/* 2 Add Cart */}
       <div class="cart-list">
         <Cart orders={orders} />
       </div>
@@ -71,6 +75,7 @@ function App() {
     </div>
     <section class="painting-listing">
       <ul>
+        {/* 1 Add Painting Components */}
         <li>
           <Painting name="fred" description="painting description" addItem={handleAddItem} />
         </li>
@@ -83,6 +88,42 @@ function App() {
       </ul>
       </section>
     </div>
+    
+  );
+}
+
+function App() {
+  const [distance, setDistance] = useState(0);
+  const [currentView, setCurrentView] = useState(1);
+  const viewMain = () => {
+    setCurrentView(1);
+  }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      axios.get(process.env.REACT_APP_API + "/GetDistance").then((response) => {
+        setDistance(response.data);
+      });
+    }, 1000);
+    return () => clearInterval(interval);
+    
+  },[])
+
+  const viewOrders = () => {
+    setCurrentView(2);
+  }
+  return (
+    <div>
+    <div class="rightAlignNav">
+      <button onClick={viewMain}>View Main</button>
+      <button onClick={viewOrders}>View Orders</button>
+    </div>
+    <div className="distance">
+      {distance}
+    </div>
+    {(currentView === 1) && <BuyOrders />}
+    {(currentView === 2) && <Orders />}
+  </div>
   );
 }
 
