@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import './App.css';
-
+import React, { useState } from "react";
+import './style.scss';
+import axios from 'axios';
 
 function Painting(props) {
   const [quantity, setQuantity] = useState();
@@ -20,7 +20,7 @@ function Painting(props) {
       <div class="painting-action">
         <label>Quantity</label>
         <input type="text" class="addQuanitity" onChange={e => setQuantity(e.target.value)} />
-        <a onClick={handleAdd} href="">Add</a>
+        <button onClick={handleAdd} >Add</button>
         <p class="counter"></p>
       </div>
       </div>
@@ -41,8 +41,13 @@ function App() {
   const [email, setEmail] = useState();
   const [orders, setOrders] = useState([]);
 
-  const sendOrder = () => {
-
+  const sendOrder = async () => {
+    debugger;
+    await axios.post(process.env.REACT_APP_API + "/InsertData",
+    {
+      email: email,
+      orders: orders
+    })
   }
 
   const handleAddItem = (itemName,quantity) => {

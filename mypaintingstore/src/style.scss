@@ -1,0 +1,140 @@
+/* Colors */
+
+$white: #fff;
+$button-bg: teal;
+$button-hover: navy;
+$html-bg: #eff;
+$container-bg: #fef;
+$border: #ccc;
+
+
+/* Page Settings */
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+  background: $html-bg;
+}
+
+
+/* Layout */
+.container {
+  margin: 0 auto;
+  max-width: 80rem;
+  padding: 1.5rem;
+  width: 100%;
+  background: $container-bg;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  font-size: 2.4rem;
+}
+
+.painting-cart {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.painting-listing {
+  
+  ul {
+        
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    list-style: none;
+    padding-left: 0;
+  }
+}
+
+/* Listing Styling */
+.painting-container {
+  border: .1rem solid $border;
+  margin: 1.5rem;
+  background: #ffe;
+  
+  .painting-info{
+    margin: 1.5rem;
+  }
+}
+
+.btn {
+  background: $button-bg;
+  color: $white;
+  padding: 1.5rem;
+  text-decoration: none;
+  transition: 0.5s ease all;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  font-weight: 700;
+  font-size: 2rem;
+  width: calc( 100% - 3rem );
+  
+  &:hover {
+    background: $button-hover;
+  }
+  
+  &.submit-order {
+    margin: 1.5rem;
+  }
+}
+
+label {
+  text-align: center;
+  display: block;
+  font-size: 2rem;
+  padding-right: 1rem;
+}
+
+input[type=email] {
+  padding: 1rem;
+  box-shadow: 0;
+  margin: 0 1.5rem;
+}
+.counter,
+.cart-list {
+  //display:none;
+}
+
+@media screen and (min-width: 900px) {
+  .container {
+    max-width: 120rem;
+    flex-direction: column;
+  }
+  
+  h1 {
+    font-size: 3.6rem;
+  }
+
+  .painting-cart {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .painting-listing {
+
+    ul {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+  
+  label {
+    display: inline-block;
+  }
+  
+  .btn {
+    &.submit-order {
+      margin: 1.5rem;
+    }
+  }
+}
