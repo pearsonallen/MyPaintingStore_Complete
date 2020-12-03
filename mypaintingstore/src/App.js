@@ -60,8 +60,10 @@ function App() {
     <div class="painting-cart">
       <div class="customer-info">
       <label for="email">Email</label>
+      {/* 3 Talk about state methods */}
       <input onChange={e => setEmail(e.target.value)} type="email" id="cust-email" />
       </div>
+      {/* 2 Add Cart */}
       <div class="cart-list">
         <Cart orders={orders} />
       </div>
@@ -71,6 +73,7 @@ function App() {
     </div>
     <section class="painting-listing">
       <ul>
+        {/* 1 Add Painting Components */}
         <li>
           <Painting name="fred" description="painting description" addItem={handleAddItem} />
         </li>
