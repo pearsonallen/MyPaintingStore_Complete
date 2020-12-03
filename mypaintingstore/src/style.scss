@@ -25,10 +25,13 @@ body {
   margin: 0;
 }
 
+#root {
+  background: $container-bg;
+}
+
 
 /* Layout */
 .container {
-  background: $container-bg;
   margin: 0 auto;
   max-width: 80rem;
   min-height: 100vh;
@@ -60,12 +63,14 @@ h1 {
       
       table {
         display: flex;
+        flex-wrap: wrap;
         width: 100%;
       }
       tr {
         display: flex;
         flex-wrap: wrap;
         margin: 1.5rem 0;
+        width: 100%;
       }
       td {
         width: 100%;
