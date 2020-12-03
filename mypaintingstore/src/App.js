@@ -12,7 +12,7 @@ function Painting(props) {
   return (
     <div class="painting-container">
       <div class="painting-image">
-        <img src="https://picsum.photos/200" alt="Chris's Wonderful Work" />
+        <img src={props.img} alt="Chris's Wonderful Work" />
       </div>
       <div class="painting-info">
         <h2>{props.name}</h2>
@@ -77,13 +77,13 @@ function BuyOrders() {
       <ul>
         {/* 1 Add Painting Components */}
         <li>
-          <Painting name="fred" description="painting description" addItem={handleAddItem} />
+          <Painting name="Red Elma" img="https://i.imgur.com/uVhng9d.jpg" description="Burning with anger, hidden behind a smile, this illustration shows a person that is angry on the inside." addItem={handleAddItem} />
         </li>
         <li>
-          <Painting name="cathy" description="painting description" addItem={handleAddItem} />
+          <Painting name="Blue Pete" img="https://i.imgur.com/pxMrzis.jpg" description="The sorrow Pete feels is palpable.  His sadness exits his pores in a blue hue." addItem={handleAddItem} />
         </li>
         <li>
-          <Painting name="dave" description="painting description" addItem={handleAddItem} />
+          <Painting name="Green Bean" img="https://i.imgur.com/nhLiK1Q.jpg" description="Bean has turned green from all the vegetables he eats.  It's his attack on the monoculture of food in his country." addItem={handleAddItem} />
         </li>
       </ul>
       </section>
@@ -94,6 +94,7 @@ function BuyOrders() {
 
 function App() {
   const [distance, setDistance] = useState(0);
+  const [distance2, setDistance2] = useState("Not Painting");
   const [currentView, setCurrentView] = useState(1);
   const viewMain = () => {
     setCurrentView(1);
@@ -103,6 +104,13 @@ function App() {
     const interval = setInterval(() => {
       axios.get(process.env.REACT_APP_API + "/GetDistance").then((response) => {
         setDistance(response.data);
+        if (response.data <= 20) {
+          setDistance2("I'm Painting");
+        } else if (response.data <= 50) {
+          setDistance2("I'm close to painting!");
+        } else  {
+          setDistance2("I'm NOT painting right now");
+        }
       });
     }, 1000);
     return () => clearInterval(interval);
@@ -119,7 +127,7 @@ function App() {
       <button onClick={viewOrders}>View Orders</button>
     </div>
     <div className="distance">
-      {distance}
+      {distance} {distance2}
     </div>
     {(currentView === 1) && <BuyOrders />}
     {(currentView === 2) && <Orders />}
