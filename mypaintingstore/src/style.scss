@@ -1,18 +1,32 @@
 /* Colors */
 
-$white: #fff;
-$button-bg: teal;
-$button-hover: navy;
-$html-bg: #eff;
-$container-bg: #fef;
-$border: #ccc;
 
+$border: #898F9C;
+$button-bg: #4267B2;
+$button-hover: darken(#4267B2, 10%);
+$cart-label: #777;
+$container-bg: #f1f1f1;
+$font-family: sans-serif;
+$font-color: #222;
+$html-bg: #fff;
+$paint-bg: #fff;
+$white: #fff;
 
 /* Page Settings */
 html {
-  font-size: 62.5%;
-  box-sizing: border-box;
   background: $html-bg;
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  color: $font-color;
+  font-family: $font-family;
+  margin: 0;
+}
+
+#root {
+  background: $container-bg;
 }
 
 
@@ -20,35 +34,69 @@ html {
 .container {
   margin: 0 auto;
   max-width: 80rem;
+  min-height: 100vh;
   padding: 1.5rem;
   width: 100%;
-  background: $container-bg;
   
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
 }
 
 h1 {
   display: flex;
-  justify-content: center;
   font-size: 2.4rem;
+  justify-content: center;
 }
 
 .painting-cart {
   display: flex;
   flex-direction: column;
 
+    .cart-list {
+      border: 1px solid $border;
+      font-size: 1.6rem;
+      margin-left: 1.5rem;
+      order: 1;
+      padding: 1.5rem;
+      width: calc( 100% - 7rem);
+      
+      table {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+      tr {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 1.5rem 0;
+        width: 100%;
+      }
+      td {
+        width: 100%;
+        
+        &:first-of-type:before{
+          content: "Name";
+        }
+        
+        &:last-of-type:before {
+          content: "Quantity";
+        }
+        
+        &:before{
+          color: $cart-label;
+          margin-right: .5rem;
+        }
+      }
+  }
 }
 
 .painting-listing {
-  
   ul {
-        
     display: flex;
     flex-direction: row;
-    justify-content: center;
     flex-wrap: wrap;
+    justify-content: center;
     list-style: none;
     padding-left: 0;
   }
@@ -56,28 +104,35 @@ h1 {
 
 /* Listing Styling */
 .painting-container {
+  background: $paint-bg;
   border: .1rem solid $border;
   margin: 1.5rem;
-  background: #ffe;
   
   .painting-info{
+    font-size: 1.6rem;
     margin: 1.5rem;
+  }
+  
+  .painting-action {
+    input {
+      margin-bottom: 0.5rem;
+    }
   }
 }
 
 .btn {
+  align-items: flex-end;
   background: $button-bg;
   color: $white;
+  cursor: pointer;
+  display: flex;
+  font-weight: 700;
+  font-size: 2rem;
+  justify-content: center;
   padding: 1.5rem;
   text-decoration: none;
   transition: 0.5s ease all;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  font-weight: 700;
-  font-size: 2rem;
-  width: calc( 100% - 3rem );
+  width: 100%;
   
   &:hover {
     background: $button-hover;
@@ -85,30 +140,33 @@ h1 {
   
   &.submit-order {
     margin: 1.5rem;
+    width: calc( 100% - 4rem);
   }
 }
 
 label {
-  text-align: center;
   display: block;
   font-size: 2rem;
   padding-right: 1rem;
+  text-align: center;
 }
 
-input[type=email] {
-  padding: 1rem;
+input[type=email],
+input[type=text] {
   box-shadow: 0;
   margin: 0 1.5rem;
+  padding: 1rem;
+  width: calc( 100% - 6rem );
 }
-.counter,
-.cart-list {
-  //display:none;
+
+.counter {
+  display:none;
 }
 
 @media screen and (min-width: 900px) {
   .container {
-    max-width: 120rem;
     flex-direction: column;
+    max-width: 120rem;
   }
   
   h1 {
@@ -116,8 +174,28 @@ input[type=email] {
   }
 
   .painting-cart {
-    flex-direction: row;
     align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 120rem;
+    width: 100%;
+    
+    .cust-info {
+      width: 70%;
+    }
+    .cart-actions {
+      width: 30%;
+    }
+    
+    .cart-list {
+      order: 1;
+      width: 50%;
+      
+      td {
+        width: 45%;
+      }
+    }
   }
 
   .painting-listing {
@@ -129,7 +207,7 @@ input[type=email] {
   }
   
   label {
-    display: inline-block;
+    display: block;
   }
   
   .btn {
