@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import './style.scss';
 import axios from 'axios';
+import Orders from './Orders';
 
 function Painting(props) {
   const [quantity, setQuantity] = useState();
@@ -37,7 +38,7 @@ function Cart(props) {
   )
 }
 
-function App() {
+function BuyOrders() {
   const [email, setEmail] = useState();
   const [orders, setOrders] = useState([]);
 
@@ -51,6 +52,7 @@ function App() {
   }
 
   const handleAddItem = (itemName,quantity) => {
+    debugger;
     setOrders([...orders, {name: itemName, quantity: quantity}]);
   }
 
@@ -86,6 +88,29 @@ function App() {
       </ul>
       </section>
     </div>
+    
+  );
+}
+
+function App() {
+
+  const [currentView, setCurrentView] = useState(1);
+  const viewMain = () => {
+    setCurrentView(1);
+  }
+
+  const viewOrders = () => {
+    setCurrentView(2);
+  }
+  return (
+    <div>
+    <div class="rightAlignNav">
+      <button onClick={viewMain}>View Main</button>
+      <button onClick={viewOrders}>View Orders</button>
+    </div>
+    {(currentView === 1) && <BuyOrders />}
+    {(currentView === 2) && <Orders />}
+  </div>
   );
 }
 
