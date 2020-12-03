@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './style.scss';
 import axios from 'axios';
 import Orders from './Orders';
@@ -93,11 +93,21 @@ function BuyOrders() {
 }
 
 function App() {
-
+  const [distance, setDistance] = useState(0);
   const [currentView, setCurrentView] = useState(1);
   const viewMain = () => {
     setCurrentView(1);
   }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      axios.get(process.env.REACT_APP_API + "/GetDistance").then((response) => {
+        setDistance(response.data);
+      });
+    }, 1000);
+    return () => clearInterval(interval);
+    
+  },[])
 
   const viewOrders = () => {
     setCurrentView(2);
@@ -107,6 +117,9 @@ function App() {
     <div class="rightAlignNav">
       <button onClick={viewMain}>View Main</button>
       <button onClick={viewOrders}>View Orders</button>
+    </div>
+    <div className="distance">
+      {distance}
     </div>
     {(currentView === 1) && <BuyOrders />}
     {(currentView === 2) && <Orders />}
