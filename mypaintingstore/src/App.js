@@ -11,7 +11,7 @@ function Painting(props) {
   return (
     <div class="painting-container">
       <div class="painting-image">
-        <img src="https://picsum.photos/200" alt="" />
+        <img src="https://picsum.photos/200" alt="Chris's Wonderful Work" />
       </div>
       <div class="painting-info">
         <h2>{props.name}</h2>
@@ -20,7 +20,7 @@ function Painting(props) {
       <div class="painting-action">
         <label>Quantity</label>
         <input type="text" class="addQuanitity" onChange={e => setQuantity(e.target.value)} />
-        <button onClick={handleAdd} >Add</button>
+        <button onClick={handleAdd} className="btn" >Add</button>
         <p class="counter"></p>
       </div>
       </div>
@@ -67,7 +67,7 @@ function App() {
       </div>
       <div class="cart-actions">
         <button onClick={sendOrder} class="btn submit-order">Order</button>
-        <div>
+      </div>
     </div>
     <section class="painting-listing">
       <ul>
@@ -82,8 +82,6 @@ function App() {
         </li>
       </ul>
       </section>
-    </div>
-    </div>
     </div>
   );
 }
