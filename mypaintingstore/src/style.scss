@@ -36,7 +36,7 @@ body {
   max-width: 80rem;
   min-height: 100vh;
   padding: 1.5rem;
-  width: 100%;
+  width: calc( 100% - 3rem );
   
   display: flex;
   align-items: center;
