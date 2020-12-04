@@ -120,6 +120,10 @@ h1 {
   }
 }
 
+img {
+  width: 100%;
+}
+
 .btn {
   align-items: flex-end;
   background: $button-bg;
@@ -203,9 +207,20 @@ input[type=text] {
     ul {
       display: flex;
       flex-direction: row;
+
+      li {
+        max-width: 33%;
+      }
     }
   }
   
+  .painting-container {
+
+    .painting-info {
+      min-height: 13rem;
+    }
+  }
+
   label {
     display: block;
   }
