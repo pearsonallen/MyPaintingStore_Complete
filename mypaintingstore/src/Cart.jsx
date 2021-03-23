@@ -7,6 +7,7 @@ function Cart(props) {
                     <td>{order.quantity}</td>
                 </tr>
             )}
+        <!-- Test -->
         </table>
     )
 }
